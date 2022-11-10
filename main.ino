@@ -3,9 +3,12 @@
 
 // Include the Servo library 
 #include <Servo.h> 
+
 // Change the Servo pin if needed
 int servoPin = 3; 
 
+// if there are more than 1 servos to controll then create more servos  
+// eg:- Servo Servo1,Servo2,Servo3 etc..
 Servo Servo1; 
 void setup() { 
    Servo1.attach(servoPin); 
