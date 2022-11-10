@@ -2,27 +2,23 @@
 
 
 // Include the Servo library 
-#include <Servo.h> 
+#include <Servo.h>
 
-// Change the Servo pin if needed
-int servoPin = 3; 
+Servo myservo;  // create servo object to control a servo
 
-// if there are more than 1 servos to controll then create more servos  
-// eg:- Servo Servo1,Servo2,Servo3 etc..
-Servo Servo1; 
-void loop() { 
-   Servo1.attach(servoPin); 
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 }
-void loop(){ 
-//this code will trun the servo motor 0 degress and wait 1 seconds or 1000ms
-   Servo1.write(0); 
-   delay(1000); 
-   
-//this code will trun the servo motor 90 degress and wait 1 seconds or 1000ms
-   Servo1.write(90); 
-   delay(1000); 
-   
-//this code will trun the servo motor 180 degress and wait 1 seconds or 1000ms
-   Servo1.write(180); 
-   delay(1000); 
+
+void loop() {
+  for (pos = 0 ; pos <= 90 ; pos += 1 ){
+    myservo.write(pos);
+    delay(15);
+  }
+  for (pos = 90 ; pos >= 0 ; pos -= 1 ){
+    myservo.write(pos);
+    delay(15);
+  }
 }
