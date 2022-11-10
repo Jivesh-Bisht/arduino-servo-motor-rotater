@@ -10,7 +10,7 @@ int servoPin = 3;
 // if there are more than 1 servos to controll then create more servos  
 // eg:- Servo Servo1,Servo2,Servo3 etc..
 Servo Servo1; 
-void setup() { 
+void loop() { 
    Servo1.attach(servoPin); 
 }
 void loop(){ 
