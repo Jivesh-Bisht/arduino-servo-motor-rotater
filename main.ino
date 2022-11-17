@@ -1,66 +1,30 @@
-// Add the control pin at 9 or else change the code according the control pin is in the board number
-
 
 // Include the Servo library 
 #include <Servo.h>
 
 Servo servo1, servo2;  // create servo object to control a servo
-int ButtonPin = 2;
-int counter = 0;
+int ButtonPin = 2; // Pin from where the button OUTPUT pin is connected
 bool pressed = false;
-int pos = 0;    // variable to store the servo position
+
 
 void setup() {
-  Serial.begin(115200);
-  pinMode(ButtonPin, INPUT_PULLUP);
+
+  pinMode(ButtonPin, INPUT_PULLUP);  // Sets up the "BUTTON PIN" to listen for any input
   servo1.attach(9);  // attaches the servo on pin 9 to the servo object
   servo2.attach(11); // attaches the servo on pin 11 to the servo object
 }
 
+// Mainloop
 void loop() {
   
-  bool currentState = digitalRead(ButtonPin);
+  bool currentState = digitalRead(ButtonPin); // this code wil read if everysecond if the button is pressed or not
   
-  
+  // If the current state of the button is pressed than turn both of the servos to 180 degree
   if (currentState==pressed){
-    Serial.println("Button pressed");  
-    counter++;
-    delay(500);
+    servo1.write(180);
+    servo2.write(180);
+  } else{ // if the current state of the button is not pressed than turn both of the servos to 0 degree
+    servo1.write(0);
+    servo2.write(0);
   }
-
-  
-  // switch case for handling close  and open gate when the button is pressed
-  switch(counter){
-    case 1:
-      for (pos = 0 ; pos <= 90 ; pos ++ ){
-       servo1.write(pos);
-       servo2.write(pos);
-       delay(15);
-       }
-      Serial.println("Gate opened");
-      break;
-     case 2:
-      for (pos = 90 ; pos >= 0 ; pos -= 1 ){
-      servo1.write(pos);
-      servo2.write(pos);
-      delay(15);
-      }
-      Serial.println("Gate closed");  
-      break;
-     default:
-      counter = 0;
-      servo1.write(0);
-      servo2.write(0);
-      break;
-      
-   
-  }
-  
-  
-  
-  
-  
 }
-
-
-// bruh imagine this code not working 
